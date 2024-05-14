@@ -1,0 +1,284 @@
+<html>
+   <head>
+      <title>First Website</title>
+      <script type="text/javascript">
+      var clevertap = {
+        event: [],
+        profile: [],
+        account: [],
+        onUserLogin: [],
+        region:'eu1',
+        notifications: [],
+        privacy: [],
+      };
+      // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
+      clevertap.account.push({ id: "44K-777-456Z" });
+      clevertap.privacy.push({ optOut: false }); //set the flag to true, if the user of the device opts out of sharing their data
+      clevertap.privacy.push({ useIP: false }); //set the flag to true, if the user agrees to share their IP data
+      (function () {
+        var wzrk = document.createElement('script');
+		 wzrk.type = 'text/javascript';
+		 wzrk.async = true;
+		 wzrk.src = 'https://d2r1yp2w7bby2u.cloudfront.net/js/clevertap.min.js';
+		 var s = document.getElementsByTagName('script')[0];
+		 s.parentNode.insertBefore(wzrk, s);
+      })();
+	      
+	      
+          
+//       clevertap.event.push("Viewed product",{
+//         "etName":"Test",
+//          "etId":"1234"
+//       }); 
+//       clevertap.notificationCallback = function (msg) {
+//         clevertap.raiseNotificationViewed();
+//         console.log(JSON.stringify(msg));
+//         clevertap.raiseNotificationClicked();
+//       };
+    </script>
+    <link rel="manifest" href="https://github.com/appyshah08/appyshah08.github.io/manifest.json">
+    <style>
+/*        ct-web-inbox #timeStamp { 
+	   color: white !important; 
+       }	    
+      #timeStamp { 
+	   color: red !important; 
+       } */
+      ct-inbox-message::part(timeStamp) { 
+	color: white; 
+      } 
+/*       ct-web-inbox::part(timeStamp) { 
+	color: white !important; 
+      }  */
+/*       ct-web-inbox::theme(timeStamp) { 
+	color: white !important; 
+      } 
+      :root::theme(timeStamp) { 
+	color: white !important; 
+      } 	    	     */
+	    
+	    
+	    
+	    
+    </style>	   
+	   
+	   
+   </head>
+   <body>
+      <h1>Money is power.Power is everything</h1>
+      <div> <h2>Popup btn click</h2>
+	   <div>   
+	       <input type="text" id="txtIdentity" placeholder="Identity" style="margin:10px" />
+	   </div>		   
+	  <div>	   
+	       <input type="text" id="txtEmail" placeholder="Email" style="margin:10px"/>
+	  </div>		  
+          <div>		  
+	      <input type="text" id="txtMobile" placeholder="Mobile" style="margin:10px"/>  
+	 </div>		  
+         <div id="containerSingle">
+	 </div>
+	 <div id="containerCarousel">
+	  </div>    
+	 <div id="container">
+	     <div class="close">&times;</div>
+  	        <img src="https://img.freepik.com/free-photo/young-gowoman-yellow-leather-jacket-copy-space_23-2148674153.jpg?w=2000"/>
+             <div class="message">
+  	         Hello <span id="user-name">user</span>,
+   	         <p>Still thinking about the <span id="product-name">item</span> in your cart?</p>
+                 <p>We get it - it's fabulous.</p>
+   	         <p>Use SALE20 and avail 20% off</p>
+                 <p>What are you waiting for??</p>
+             </div>
+           </div>     
+	  <button onclick="onuserLoginClicked()">Onuserlogin</button>
+	 <button onclick="webLoginClicked()">Web Login Success</button>     
+	  <button onclick="profilePushClicked()">Profile Push</button>
+         <button onclick="boxEventClicked()"> Box Clicked</button>
+         <button onclick="bannerEventClicked()"> Banner Clicked </button>
+         <button onclick="interstiEventClicked()"> Interstitial Clicked </button>
+	 <button onclick="kalkiClicked()"> Kalki Clicked </button>   
+	 <button onclick="webinboxcode()" id="inbox"> Web Inbox </button> <br/>
+	 <button onclick="webnativeSingleClicked('single')"> Web Native SB </button> 
+	 <button onclick="webnativeSingleClicked('singletext')"> Web Native SBT</button>      
+	 <button onclick="webnativeCarouselClicked('carousel')"> Web Native CB </button>  
+	  <button onclick="webnativeCarouselClicked('carouseltext')"> Web Native CBT </button>       
+	 <button onclick="webnativeCustomClicked()"> Web Native Custom </button>   
+      </div>   
+      <script>
+	  function webinboxcode(){
+             console.log("thank you");
+	  }		  
+          function boxEventClicked(){
+            // clevertap.event.push("Box Clicked");
+             clevertap.notifications.push({
+ 
+ 		 "titleText":'Would you like to receive Push Notifications?',
+ 		 "bodyText":'We promise to only send you relevant content and give you updates on your transactions',
+  		 "okButtonText":'Sign me up!',
+  		 "rejectButtonText":'No thanks',
+  		 "okButtonColor":'#f28046',
+	         "serviceWorkerPath":"/clevertap_serviceworker.js"
+	     });		  
+          }
+          function bannerEventClicked(){
+             clevertap.event.push("Banner Clicked"); 
+          }
+          function interstiEventClicked(){
+             clevertap.event.push("Interstitial Clicked");
+             
+          }
+	 function webLoginClicked(){
+             clevertap.event.push("Web Login Successful");
+             
+          }   
+	 function webnativeCustomClicked(){ 
+	     alert("Clicked");	 
+             clevertap.event.push("Web Native Custom");
+	 }		 
+	 function onuserLoginClicked(){
+		 
+		
+		 var identity = document.getElementById("txtIdentity").value;
+		// console.log("identity:"+identity);
+		 var email = document.getElementById("txtEmail").value;
+		 var mobile = document.getElementById("txtMobile").value;
+		 alert("onuserlogin");
+	    	 clevertap.onUserLogin.push({
+                     "Site": {
+                       //"Name": "Jack Montana",                  // String
+                       "Identity": document.getElementById("txtIdentity").value,                    // String or number
+                       "Email": document.getElementById("txtEmail").value,               // Email address of the user
+                       "Phone": document.getElementById("txtMobile").value,                 // Phone (with the country code)
+                       //"Gender": "M",                           // Can be either M or F
+                       //"DOB": new Date(), // Date of Birth. Javascript Date object
+ //                       "Photo": 'www.foobar.com/image.jpeg',    // URL to the Image
+
+                 // Enable whatsapp notifications
+                 }
+	      });
+	 }	
+	function profilePushClicked(){
+		
+		 var identity = document.getElementById("txtIdentity").value;
+		 var email = document.getElementById("txtEmail").value;
+		 var mobile = document.getElementById("txtMobile").value;
+		alert("profilepush");
+                clevertap.profile.push({
+                    "Site": {
+                       "Name": "Jack Montana",                  // String
+                       "Identity": document.getElementById("txtIdentity").value,                    // String or number
+                       "Email": document.getElementById("txtEmail").value,               // Email address of the user
+                       "Phone": document.getElementById("txtMobile").value,                 // Phone (with the country code)
+                       "Gender": "M",                           // Can be either M or F
+                       "DOB": new Date(), // Date of Birth. Javascript Date object
+                       "Photo": 'www.foobar.com/image.jpeg',    // URL to the Image
+
+                 // Enable whatsapp notifications
+                 }
+	      });
+	 }	      
+         function boxNotificationClicked(){
+             alert("CLicked");
+             var wrapper = window.parent.document.getElementById('wizParDiv0');
+             wrapper.remove();
+         }
+	      
+	 function renderCartDropOffPersonalisationCampaign(data) {
+	     const name = data.kv.Name;
+  	     const product = data.kv.Cart;
+  	     const containerEl = document.getElementById('container')
+             const userNameEl = containerEl.getElementById('user-name')
+             usernameEl.innerText = name
+             const productNameEl = containerEl.getElementById('product-name')
+             productNameEl.innerText = product 
+             clevertap.renderNotificationViewed(data);
+             containerEl.addEventListener('click', () => {
+  		 clevertap.renderNotificationClicked(data)
+	     });		 
+         }
+	      
+	 function kalkiClicked(){
+	     //alert("clicked");	 
+             clevertap.event.push("kalki_push");		 
+// 	     var wrapper = window.parent.document.getElementById('wizParDiv0');
+//              var btnDone = window.parent.document.getElementsByClassName('wzrk_done');	
+//              var btnClose = window.parent.document.getElementsByClassName('wzrk_close');
+//              btnDone.addEventListener('click', closePopUp);
+// 	     btnClose.addEventListener('click', closePopUp);
+//               function closePopUp()
+//               { 
+// 		      wrapper.remove(); 
+// 	      }		 
+	 }		 
+	 function funcDone()
+         {
+            var wrapper = window.parent.document.getElementById('wizParDiv0');
+            wrapper.remove();
+         }
+         function funcClose()
+         {
+            var wrapper = window.parent.document.getElementById('wizParDiv0');
+            wrapper.remove();
+         }     
+	 function exitBannerButtonClicked(){
+	     alert("CLicked");
+             var wrapper = window.parent.document.getElementById('wizParDiv2');
+             wrapper.remove(); 
+	 }
+	 function exitInterButtonClicked(){
+	     alert("CLicked");
+             var overlay = window.parent.document.getElementById('intentOpacityDiv');
+             var wrapper = window.parent.document.getElementById('intentPreview');
+             wrapper.remove(); 
+             overlay.remove();		 
+	 }    
+	 function webnativeSingleClicked(key)
+         {
+            alert("Clicked");
+            clevertap.event.push("WebNativeS",{type:key});		 
+	 }
+	   
+	 
+	 function webnativeCarouselClicked(key)
+         {
+            alert("Clicked");
+	    clevertap.event.push("WebNativeC",{type:key});	 
+	 }		  
+//              debugger;
+//              var btn = document.querySelector('.btn');
+//              var wrapper = window.parent.document.getElementById('wizParDiv0');
+//              if(btn && wrapper){
+//              //  btn.addEventListener('click', closePopUp);
+//              } 
+// //              function closePopUp()
+// //              { wrapper.remove(); }
+//           }
+      </script>   
+      <script type="module">
+  	 // Import the functions you need from the SDKs you need
+  	import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+  	import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
+  	// TODO: Add SDKs for Firebase products that you want to use
+  	// https://firebase.google.com/docs/web/setup#available-libraries
+
+  	// Your web app's Firebase configuration
+  	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  	const firebaseConfig = {
+    		apiKey: "AIzaSyDYJS8RGDhykzrayLVPlaWB_sl5O5yJ-WA",
+    		authDomain: "ctwebsdk-9d9d8.firebaseapp.com",
+    		projectId: "ctwebsdk-9d9d8",
+    		storageBucket: "ctwebsdk-9d9d8.appspot.com",
+    		messagingSenderId: "512108197835",
+    		appId: "1:512108197835:web:8156d40a11b66b97f8e84e",
+    		measurementId: "G-S35N9T3LNW"
+        };
+
+  	// Initialize Firebase
+  	const app = initializeApp(firebaseConfig);
+  	const analytics = getAnalytics(app);
+    </script>	   
+	   
+
+   </body>
+</html>
